@@ -9,8 +9,8 @@ namespace doggoAttack
         author = "Jopo",
         name = "DoggoAttack",
         description = "Doggo attack event",
-        id = "jopo.doggoattack.plugin",
-        version = "2.4",
+        id = "jopo.gamemode.doggoattack",
+        version = "2.6",
         SmodMajor = 3,
         SmodMinor = 0,
         SmodRevision = 0
@@ -35,6 +35,8 @@ namespace doggoAttack
         
         public override void Register()
         {
+            GamemodeManager.GamemodeManager.RegisterMode(this);
+
             // Register Events
             this.AddEventHandlers(new EventHandler(this));
 

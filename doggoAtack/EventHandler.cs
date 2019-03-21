@@ -24,7 +24,7 @@ namespace doggoAttack
 
         public void OnPlayerHurt(PlayerHurtEvent ev)
         {
-            if (!plugin.isActive) return;
+            if (!plugin.isActive && GamemodeManager.GamemodeManager.CurrentMode != plugin) return;
 
             if (ev.Player.TeamRole.Role == Role.CLASSD && ev.Damage >= ev.Player.GetHealth() && (ev.Attacker.TeamRole.Role == Role.SCP_939_53 || ev.Attacker.TeamRole.Role == Role.SCP_939_89))
             {
@@ -36,7 +36,7 @@ namespace doggoAttack
         public void OnRoundStart(RoundStartEvent ev)
         {
             plugin.roundStarted = true;
-            if (!plugin.isActive) return;
+            if (!plugin.isActive && GamemodeManager.GamemodeManager.CurrentMode != plugin) return;
 
             List<Player> players = plugin.Server.GetPlayers();
             int rnd = getRandom.Next(0, players.Count);
@@ -60,7 +60,7 @@ namespace doggoAttack
 
         public void OnTeamRespawn(TeamRespawnEvent ev)
         {
-            if (!plugin.isActive) return;
+            if (!plugin.isActive && GamemodeManager.GamemodeManager.CurrentMode != plugin) return;
 
             ev.PlayerList = null;
         }
@@ -68,17 +68,8 @@ namespace doggoAttack
         public void OnRoundEnd(RoundEndEvent ev)
         {
             plugin.roundStarted = false;
-            if (!plugin.isActive) return;
+            if (!plugin.isActive && GamemodeManager.GamemodeManager.CurrentMode != plugin) return;
             plugin.isActive = false;
-        }
-
-        public void closeDoors()
-        {
-            foreach (var str in plugin.pluginManager.CommandManager.CallCommand(plugin.Server, "doors", new string[] { "close" }))
-            {
-                if (str.Length != 0)
-                    plugin.Info(str);
-            }
         }
     }
 }

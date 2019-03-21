@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GamemodeManager">
+      <HintPath>..\GamemodeManager.dll</HintPath>
+    </Reference>
     <Reference Include="Smod2">
       <HintPath>..\Smod2.dll</HintPath>
     </Reference>
