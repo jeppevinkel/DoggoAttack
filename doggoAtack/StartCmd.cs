@@ -58,22 +58,10 @@ namespace doggoAttack
                 p.GiveItem(ItemType.SCIENTIST_KEYCARD);
             }
 
-            //Task.Delay(500).ContinueWith(t => closeDoors());
-
             plugin.Server.Map.Broadcast(10, "Doggo Attack: This is an event where the mission of Class D is to escape the facility by any means necessary. One escaped Class D is a victory to Class D", false);
-            plugin.Server.Map.Broadcast(10, "There will spawn one scp 939-53, and any Class D killed by it will become scp 939-89, and aid it in killing Class D.", false);
+            plugin.Server.Map.Broadcast(10, "There will spawn one scp 939-89, and any Class D killed by it will become scp 939-53, and aid it in killing Class D.", false);
 
             return new string[] { "DoggoAttack Activated" };
-        }
-
-        public void closeDoors()
-        {
-            foreach (var str in plugin.pluginManager.CommandManager.CallCommand(plugin.Server, "doors", new string[] { "close" }))
-            {
-                if (str.Length != 0)
-                    plugin.Info(str);
-            }
-            //doors(.close
         }
     }
 }

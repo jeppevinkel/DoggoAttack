@@ -38,8 +38,6 @@ namespace doggoAttack
             plugin.roundStarted = true;
             if (!plugin.isActive) return;
 
-            //Task.Delay(1000).ContinueWith(t => bar());
-
             List<Player> players = plugin.Server.GetPlayers();
             int rnd = getRandom.Next(0, players.Count);
 
@@ -56,10 +54,8 @@ namespace doggoAttack
                 p.GiveItem(ItemType.SCIENTIST_KEYCARD);
             }
 
-            //Task.Delay(500).ContinueWith(t => closeDoors());
-
             plugin.Server.Map.Broadcast(10, "Doggo Attack: This is an event where the mission of Class D is to escape the facility by any means necessary. One escaped Class D is a victory to Class D", false);
-            plugin.Server.Map.Broadcast(10, "There will spawn one scp 939-53, and any Class D killed by it will become scp 939-89, and aid it in killing Class D.", false);
+            plugin.Server.Map.Broadcast(10, "There will spawn one scp 939-89, and any Class D killed by it will become scp 939-53, and aid it in killing Class D.", false);
         }
 
         public void OnTeamRespawn(TeamRespawnEvent ev)
@@ -73,7 +69,7 @@ namespace doggoAttack
         {
             plugin.roundStarted = false;
             if (!plugin.isActive) return;
-            plugin.isActive = true;
+            plugin.isActive = false;
         }
 
         public void closeDoors()
