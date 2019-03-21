@@ -20,6 +20,8 @@ namespace doggoAttack
         static IConfigFile Config => ConfigManager.Manager.Config;
 
         public bool isActive = false;
+        public bool roundStarted = false;
+        public bool first = false;
 
         public override void OnDisable()
         {
@@ -37,7 +39,13 @@ namespace doggoAttack
             this.AddEventHandlers(new EventHandler(this));
 
             // Register Commands
-            this.AddCommand("da_start", new ConfigCmd(this));
+            this.AddCommand("da_start", new StartCmd(this));
+
+            // Register Commands
+            this.AddCommand("da_stop", new StopCmd(this));
+
+            // Register Commands
+            this.AddCommand("test", new TestFunc(this));
         }
     }
 }
