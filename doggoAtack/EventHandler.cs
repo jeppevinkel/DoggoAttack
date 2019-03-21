@@ -26,7 +26,7 @@ namespace doggoAttack
         {
             if (!plugin.isActive) return;
 
-            if ((byte)ev.Player.TeamRole.Role == 1 && ev.Damage >= ev.Player.GetHealth() && ((byte)ev.Attacker.TeamRole.Role == 16 | (byte)ev.Attacker.TeamRole.Role == 17))
+            if (ev.Player.TeamRole.Role == Role.CLASSD && ev.Damage >= ev.Player.GetHealth() && (ev.Attacker.TeamRole.Role == Role.SCP_939_53 || ev.Attacker.TeamRole.Role == Role.SCP_939_89))
             {
                 ev.Damage = 0f;
                 ev.Player.ChangeRole(Role.SCP_939_53, true, false, false, true);
