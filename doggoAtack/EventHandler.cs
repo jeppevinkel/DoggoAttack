@@ -24,7 +24,14 @@ namespace doggoAttack
 
         public void OnPlayerHurt(PlayerHurtEvent ev)
         {
-            if (!plugin.isActive && GamemodeManager.GamemodeManager.CurrentMode != plugin) return;
+            if (Config.GetBoolValue("da_gamemodemanager", true))
+            {
+                if (GamemodeManager.GamemodeManager.CurrentMode != plugin) return;
+            }
+            else
+            {
+                if (!plugin.isActive) return;
+            }
 
             if (ev.Player.TeamRole.Role == Role.CLASSD && ev.Damage >= ev.Player.GetHealth() && (ev.Attacker.TeamRole.Role == Role.SCP_939_53 || ev.Attacker.TeamRole.Role == Role.SCP_939_89))
             {
@@ -36,7 +43,14 @@ namespace doggoAttack
         public void OnRoundStart(RoundStartEvent ev)
         {
             plugin.roundStarted = true;
-            if (!plugin.isActive && GamemodeManager.GamemodeManager.CurrentMode != plugin) return;
+            if (Config.GetBoolValue("da_gamemodemanager", true))
+            {
+                if (GamemodeManager.GamemodeManager.CurrentMode != plugin) return;
+            }
+            else
+            {
+                if (!plugin.isActive) return;
+            }
 
             List<Player> players = plugin.Server.GetPlayers();
             int rnd = getRandom.Next(0, players.Count);
@@ -60,7 +74,14 @@ namespace doggoAttack
 
         public void OnTeamRespawn(TeamRespawnEvent ev)
         {
-            if (!plugin.isActive && GamemodeManager.GamemodeManager.CurrentMode != plugin) return;
+            if (Config.GetBoolValue("da_gamemodemanager", true))
+            {
+                if (GamemodeManager.GamemodeManager.CurrentMode != plugin) return;
+            }
+            else
+            {
+                if (!plugin.isActive) return;
+            }
 
             ev.PlayerList = null;
         }
@@ -68,7 +89,14 @@ namespace doggoAttack
         public void OnRoundEnd(RoundEndEvent ev)
         {
             plugin.roundStarted = false;
-            if (!plugin.isActive && GamemodeManager.GamemodeManager.CurrentMode != plugin) return;
+            if (Config.GetBoolValue("da_gamemodemanager", true))
+            {
+                if (GamemodeManager.GamemodeManager.CurrentMode != plugin) return;
+            }
+            else
+            {
+                if (!plugin.isActive) return;
+            }
             plugin.isActive = false;
         }
     }

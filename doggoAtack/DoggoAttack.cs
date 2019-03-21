@@ -35,19 +35,26 @@ namespace doggoAttack
         
         public override void Register()
         {
-            GamemodeManager.GamemodeManager.RegisterMode(this);
-
             // Register Events
             this.AddEventHandlers(new EventHandler(this));
 
             // Register Commands
             this.AddCommand("da_start", new StartCmd(this));
-
-            // Register Commands
             this.AddCommand("da_stop", new StopCmd(this));
+            this.AddCommand("da_test", new TestFunc(this));
 
-            // Register Commands
-            this.AddCommand("test", new TestFunc(this));
+            // Register configs
+            AddConfig(new Smod2.Config.ConfigSetting("da_gamemodemanager", true, Smod2.Config.SettingType.BOOL, true, "Set whether the server is using gamemode manager"));
+
+            if (ConfigManager.Manager.Config.GetBoolValue("da_gamemodemanager", true))
+            {
+                Info("Server using gamemode manager");
+                GamemodeManager.GamemodeManager.RegisterMode(this);
+            }
+            else
+            {
+                Info("Server not using gamemode manager");
+            }
         }
     }
 }

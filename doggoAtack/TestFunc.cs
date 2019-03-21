@@ -24,12 +24,12 @@ namespace doggoAttack
         public string GetCommandDescription()
         {
             // This prints when someone types HELP HELLO
-            return "Starts the doggo attack event";
+            return "Tests closing doors";
         }
 
         public string GetUsage()
         {
-            return "test";
+            return "da_test";
         }
 
         public string[] OnCall(ICommandSender sender, string[] args)
