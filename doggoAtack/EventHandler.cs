@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace doggoAttack
 {
-    class EventHandler : IEventHandlerPlayerHurt, IEventHandlerRoundStart, IEventHandlerTeamRespawn, IEventHandlerRoundEnd
+    class EventHandler : IEventHandlerPlayerHurt, IEventHandlerRoundStart, IEventHandlerTeamRespawn, IEventHandlerRoundEnd, IEventHandlerCheckEscape
     {
         static IConfigFile Config => ConfigManager.Manager.Config;
         private static Random getRandom = new System.Random();
@@ -33,7 +33,7 @@ namespace doggoAttack
                 if (!plugin.isActive) return;
             }
 
-            if (ev.Player.TeamRole.Role == Role.CLASSD && ev.Damage >= ev.Player.GetHealth() && (ev.Attacker.TeamRole.Role == Role.SCP_939_53 || ev.Attacker.TeamRole.Role == Role.SCP_939_89))
+            if (ev.Player.TeamRole.Role == Role.CLASSD/* && ev.Damage >= ev.Player.GetHealth()*/ && (ev.Attacker.TeamRole.Role == Role.SCP_939_53 || ev.Attacker.TeamRole.Role == Role.SCP_939_89))
             {
                 ev.Damage = 0f;
                 ev.Player.ChangeRole(Role.SCP_939_53, true, false, false, true);
@@ -98,6 +98,14 @@ namespace doggoAttack
                 if (!plugin.isActive) return;
             }
             plugin.isActive = false;
+        }
+
+        public void OnCheckEscape(PlayerCheckEscapeEvent ev)
+        {
+            if (ev.AllowEscape)
+            {
+                ev.ChangeRole = Role.SPECTATOR;
+            }
         }
     }
 }

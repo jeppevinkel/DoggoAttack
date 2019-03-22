@@ -10,7 +10,7 @@ namespace doggoAttack
         name = "DoggoAttack",
         description = "Doggo attack event",
         id = "jopo.gamemode.doggoattack",
-        version = "2.6",
+        version = "1.2.4",
         SmodMajor = 3,
         SmodMinor = 0,
         SmodRevision = 0
